@@ -138,7 +138,7 @@ export function Navbar() {
         </div>
 
         <div className="mobile-drawer-kicker">
-          <span>// DIRECT SYSTEM NAVIGATION</span>
+          <span>{"SYS.NAV // DIRECT ACCESS"}</span>
           <span>ODISHA &bull; 20.29&deg; N</span>
         </div>
 
