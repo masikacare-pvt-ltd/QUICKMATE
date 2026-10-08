@@ -64,8 +64,8 @@ export function ContactSection() {
           Tell us a little about your fleet, your operation, or the partnership
           you have in mind.
         </p>
-        <a className="contact-email" href="mailto:query.quickmate@gmail.com">
-          query.quickmate@gmail.com <ArrowUpRight aria-hidden="true" />
+        <a className="contact-email" href="mailto:hello@quickmate.in">
+          hello@quickmate.in <ArrowUpRight aria-hidden="true" />
         </a>
         <div className="contact-location">
           <MapPin aria-hidden="true" />
