@@ -45,11 +45,14 @@ export function OperationalBlindSpot() {
         </div>
 
         <div className="signal-issues">
-          {signalIssues.map(({ number, title, description }) => (
+          {signalIssues.map(({ number, title, description }, idx) => (
             <div className="issue-row" key={number}>
-              <span>{number}</span>
-              <div>
-                <h3>{title}</h3>
+              <span className="issue-num">{number}</span>
+              <div className="issue-content">
+                <div className="issue-title-row">
+                  <h3>{title}</h3>
+                  <span className={`issue-indicator issue-indicator-${idx + 1}`} aria-hidden="true" />
+                </div>
                 <p>{description}</p>
               </div>
               <ArrowUpRight aria-hidden="true" />
@@ -58,11 +61,15 @@ export function OperationalBlindSpot() {
         </div>
       </div>
 
-      <div className="change-line">
-        <span>QUICKMATE CHANGES THAT.</span>
-        <span>
-          FROM SIGNALS TO UNDERSTANDING <ArrowRight aria-hidden="true" />
-        </span>
+      <div className="change-line tech-corner-brackets">
+        <div className="change-line-lead">
+          <span className="change-line-kicker">PARADIGM SHIFT</span>
+          <strong>QUICKMATE CHANGES THAT.</strong>
+        </div>
+        <Link href="#technology" className="change-line-cta">
+          <span>FROM SIGNALS TO UNDERSTANDING</span>
+          <ArrowRight aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );

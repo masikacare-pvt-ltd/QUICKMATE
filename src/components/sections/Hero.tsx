@@ -56,7 +56,7 @@ export function Hero() {
             Explore QUICKMATE <ArrowRight aria-hidden="true" />
           </Link>
           <Link className="text-link" href="#how-it-works">
-            See how it works <ArrowDownRight aria-hidden="true" />
+            See How It Works <ArrowDownRight aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -95,14 +95,14 @@ export function Hero() {
             <div className="chip-icon"><RouteIcon size={14} /></div>
             <div>
               <strong>{telemetry.distance} km</strong>
-              <small>NH-16 ROUTE</small>
+              <small>NH-16</small>
             </div>
           </div>
           <div className="hero-mobile-chip">
             <div className="chip-icon chip-status"><ShieldCheck size={14} /></div>
             <div>
               <strong>NORMAL</strong>
-              <small>SYSTEM HEALTH</small>
+              <small>STATUS</small>
             </div>
           </div>
         </div>

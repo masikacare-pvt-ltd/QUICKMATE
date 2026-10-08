@@ -10,11 +10,18 @@ import {
   AlertTriangle,
   Clock,
   Radio,
+  X,
 } from "lucide-react";
 import { vehicles, type Vehicle } from "@/lib/data";
 
 export function FleetDashboard() {
   const [activeVehicle, setActiveVehicle] = useState<Vehicle>(vehicles[0]);
+  const [sheetOpen, setSheetOpen] = useState(false);
+
+  const handleSelectVehicle = (vehicle: Vehicle) => {
+    setActiveVehicle(vehicle);
+    setSheetOpen(true);
+  };
 
   return (
     <section className="dashboard-section" id="dashboard">
@@ -111,7 +118,7 @@ export function FleetDashboard() {
             {/* Interactive Vehicle Markers on Map */}
             <button
               className={`vehicle-marker marker-a ${activeVehicle.id === "104" ? "selected-marker" : ""}`}
-              onClick={() => setActiveVehicle(vehicles[0])}
+              onClick={() => handleSelectVehicle(vehicles[0])}
               aria-label="Select vehicle 104"
             >
               <span>104</span>
@@ -119,7 +126,7 @@ export function FleetDashboard() {
             </button>
             <button
               className={`vehicle-marker marker-b ${activeVehicle.id === "108" ? "selected-marker" : ""}`}
-              onClick={() => setActiveVehicle(vehicles[1])}
+              onClick={() => handleSelectVehicle(vehicles[1])}
               aria-label="Select vehicle 108"
             >
               <span>108</span>
@@ -127,7 +134,7 @@ export function FleetDashboard() {
             </button>
             <button
               className={`vehicle-marker marker-c ${activeVehicle.id === "112" ? "selected-marker" : ""}`}
-              onClick={() => setActiveVehicle(vehicles[2])}
+              onClick={() => handleSelectVehicle(vehicles[2])}
               aria-label="Select vehicle 112"
             >
               <span>112</span>
@@ -158,7 +165,7 @@ export function FleetDashboard() {
                   <button
                     key={vehicle.id}
                     className={`vehicle-row ${isSelected ? "selected" : ""}`}
-                    onClick={() => setActiveVehicle(vehicle)}
+                    onClick={() => handleSelectVehicle(vehicle)}
                     aria-pressed={isSelected}
                   >
                     <span
@@ -182,7 +189,7 @@ export function FleetDashboard() {
               })}
             </div>
 
-            {/* Selected Vehicle Focus Telemetry Card */}
+            {/* Selected Vehicle Focus Telemetry Card (Desktop / Tablet view) */}
             <div className="vehicle-focus tech-corner-brackets">
               <div className="vehicle-focus-heading">
                 <span>FOCUSED TELEMETRY</span>
@@ -245,6 +252,97 @@ export function FleetDashboard() {
       <p className="dashboard-disclaimer">
         Illustrative product preview &bull; Fleet figures shown are sample interface content.
       </p>
+
+      {/* Mobile Telemetry Bottom Sheet (Slide-up modal for thumb operation on mobile) */}
+      <div
+        className={`vehicle-bottom-sheet ${sheetOpen ? "sheet-open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`Vehicle ${activeVehicle.id} Telemetry`}
+      >
+        <div
+          className="sheet-backdrop"
+          onClick={() => setSheetOpen(false)}
+          aria-hidden="true"
+        />
+        <div className="sheet-content tech-corner-brackets">
+          <div
+            className="sheet-handle"
+            aria-hidden="true"
+            onClick={() => setSheetOpen(false)}
+          >
+            <span />
+          </div>
+          <div className="sheet-header">
+            <div>
+              <span className="sheet-tag">LIVE TELEMETRY // QUICKMATE FLEET</span>
+              <h3>VEHICLE #{activeVehicle.id}</h3>
+              <p>{activeVehicle.place}</p>
+            </div>
+            <button
+              type="button"
+              className="sheet-close"
+              onClick={() => setSheetOpen(false)}
+              aria-label="Close vehicle details"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="sheet-grid">
+            <div className="sheet-metric">
+              <span className="metric-label">STATUS</span>
+              <strong className={`metric-value status-${activeVehicle.status.toLowerCase().replace(" ", "-")}`}>
+                {activeVehicle.status.toUpperCase()}
+              </strong>
+            </div>
+            <div className="sheet-metric">
+              <span className="metric-label">SPEED</span>
+              <strong className="metric-value">
+                {activeVehicle.status === "Stopped" ? "0" : activeVehicle.speed} <small>km/h</small>
+              </strong>
+            </div>
+            <div className="sheet-metric">
+              <span className="metric-label">ROUTE</span>
+              <strong className="metric-value">NH-16</strong>
+            </div>
+            <div className="sheet-metric">
+              <span className="metric-label">DISTANCE</span>
+              <strong className="metric-value">
+                {activeVehicle.distance} <small>km</small>
+              </strong>
+            </div>
+          </div>
+
+          <div className={`sheet-health ${activeVehicle.tone === "watch" ? "health-watch" : ""}`}>
+            {activeVehicle.tone === "watch" ? (
+              <>
+                <AlertTriangle size={16} aria-hidden="true" />
+                <div>
+                  <strong>ANOMALY DETECTED</strong>
+                  <p>Unexpected stoppage (18 min) &bull; Flagged for operational review</p>
+                </div>
+              </>
+            ) : (
+              <>
+                <ShieldCheck size={16} aria-hidden="true" />
+                <div>
+                  <strong>SYSTEM HEALTH: OPTIMAL</strong>
+                  <p>Sub-second telemetry uplink steady &bull; Route on track</p>
+                </div>
+              </>
+            )}
+          </div>
+
+          <button
+            type="button"
+            className="sheet-dismiss-btn btn-lime"
+            onClick={() => setSheetOpen(false)}
+          >
+            Dismiss Details
+          </button>
+        </div>
+      </div>
     </section>
   );
 }
