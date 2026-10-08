@@ -116,11 +116,16 @@ export function Navbar() {
             <Image
               src="/assets/quickmate-logo.jpeg"
               alt="QUICKMATE logo"
-              width={28}
-              height={28}
+              width={32}
+              height={32}
               className="rounded-full object-cover border border-[var(--lime)]"
             />
-            <span>QUICKMATE</span>
+            <div className="flex flex-col">
+              <span className="font-extrabold tracking-wider text-sm leading-tight text-white">QUICKMATE</span>
+              <span className="text-[8px] font-mono text-[var(--lime)] tracking-widest uppercase">
+                AIoT PLATFORM
+              </span>
+            </div>
           </Link>
           <button
             type="button"
@@ -128,47 +133,106 @@ export function Navbar() {
             aria-label="Close navigation menu"
             onClick={closeMenu}
           >
-            <X size={22} />
+            <X size={20} />
           </button>
+        </div>
+
+        <div className="mobile-drawer-kicker">
+          <span>// DIRECT SYSTEM NAVIGATION</span>
+          <span>ODISHA &bull; 20.29&deg; N</span>
         </div>
 
         <nav className="mobile-drawer-nav" aria-label="Mobile navigation links">
           <Link href="#home" onClick={closeMenu} className="mobile-nav-link">
             <span className="mobile-nav-num">00</span>
-            <span className="mobile-nav-text">Home</span>
-            <ArrowUpRight size={16} aria-hidden="true" />
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">Home</span>
+              <span className="mobile-nav-desc">Live Overview &amp; Telemetry</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
           </Link>
-          {navigation.map(({ label, id }, index) => (
-            <Link
-              key={id}
-              href={`#${id}`}
-              onClick={closeMenu}
-              className="mobile-nav-link"
-            >
-              <span className="mobile-nav-num">0{index + 1}</span>
-              <span className="mobile-nav-text">{label}</span>
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-          ))}
+          <Link href="#about" onClick={closeMenu} className="mobile-nav-link">
+            <span className="mobile-nav-num">01</span>
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">About</span>
+              <span className="mobile-nav-desc">The Operational Blind Spot</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
+          </Link>
+          <Link href="#how-it-works" onClick={closeMenu} className="mobile-nav-link">
+            <span className="mobile-nav-num">02</span>
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">How It Works</span>
+              <span className="mobile-nav-desc">5-Stage Intelligence Flow</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
+          </Link>
+          <Link href="#technology" onClick={closeMenu} className="mobile-nav-link">
+            <span className="mobile-nav-num">03</span>
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">Technology</span>
+              <span className="mobile-nav-desc">In-Vehicle AIoT Hardware</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
+          </Link>
+          <Link href="#dashboard" onClick={closeMenu} className="mobile-nav-link">
+            <span className="mobile-nav-num">04</span>
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">Dashboard</span>
+              <span className="mobile-nav-desc">Live Fleet Console</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
+          </Link>
+          <Link href="#team" onClick={closeMenu} className="mobile-nav-link">
+            <span className="mobile-nav-num">05</span>
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">Team</span>
+              <span className="mobile-nav-desc">Vishma Pasayat &amp; Vision</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
+          </Link>
+          <Link href="#faq" onClick={closeMenu} className="mobile-nav-link">
+            <span className="mobile-nav-num">06</span>
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">FAQ</span>
+              <span className="mobile-nav-desc">Platform &amp; Hardware Details</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
+          </Link>
           <Link href="#contact" onClick={closeMenu} className="mobile-nav-link">
             <span className="mobile-nav-num">07</span>
-            <span className="mobile-nav-text">Contact</span>
-            <ArrowUpRight size={16} aria-hidden="true" />
+            <div className="mobile-nav-info">
+              <span className="mobile-nav-text">Contact</span>
+              <span className="mobile-nav-desc">Direct Fleet Consultation</span>
+            </div>
+            <ArrowUpRight size={18} className="mobile-nav-arrow" aria-hidden="true" />
           </Link>
         </nav>
 
         <div className="mobile-drawer-footer">
-          <a
-            href="#contact"
-            onClick={closeMenu}
-            className="btn-lime mobile-drawer-cta"
-          >
-            <PhoneCall size={16} aria-hidden="true" />
-            <span>Talk to Us</span>
-          </a>
+          <div className="mobile-drawer-action-card tech-corner-brackets">
+            <div className="action-card-top">
+              <span className="live-dot" />
+              <span>DIRECT INQUIRY &bull; PRIORITY DISPATCH</span>
+            </div>
+            <a
+              href="mailto:query.quickmate@gmail.com"
+              className="action-card-email"
+            >
+              query.quickmate@gmail.com &bull; hello@quickmate.in
+            </a>
+            <a
+              href="#contact"
+              onClick={closeMenu}
+              className="btn-lime mobile-drawer-cta"
+            >
+              <PhoneCall size={16} aria-hidden="true" />
+              <span>Start a conversation</span>
+            </a>
+          </div>
           <div className="mobile-drawer-meta">
             <span>ODISHA, INDIA</span>
-            <span>AIoT FLEET INTELLIGENCE</span>
+            <span>AIoT FLEET INTELLIGENCE &bull; 2026</span>
           </div>
         </div>
       </div>
