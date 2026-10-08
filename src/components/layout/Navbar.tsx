@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { navigation } from "@/lib/data";
@@ -28,11 +29,13 @@ export function Navbar() {
         onClick={closeMenu}
         aria-label="QUICKMATE home"
       >
-        <span className="wordmark-symbol" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-        </span>
+        <Image
+          src="/assets/quickmate-logo.jpeg"
+          alt="QUICKMATE logo"
+          width={32}
+          height={32}
+          className="rounded-full object-cover border border-[var(--lime)]"
+        />
         <span>QUICKMATE</span>
       </Link>
 
