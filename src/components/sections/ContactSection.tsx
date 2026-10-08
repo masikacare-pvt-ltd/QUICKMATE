@@ -140,9 +140,23 @@ export function ContactSection() {
             )}
           </button>
           <span>
-            {formSent
-              ? "Opening your email app... If it didn't open, write to query.quickmate@gmail.com"
-              : "Fleet solutions \u2022 Partnerships \u2022 Technology"}
+            {formSent ? (
+              <>
+                Opening email app... If it didn&apos;t open,{" "}
+                <a
+                  href={`mailto:query.quickmate@gmail.com?subject=${encodeURIComponent(
+                    `QUICKMATE Inquiry - ${formData.name || "Fleet Consultation"}`
+                  )}&body=${encodeURIComponent(
+                    `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
+                  )}`}
+                  className="underline text-[var(--lime)] font-semibold"
+                >
+                  click here to email query.quickmate@gmail.com
+                </a>
+              </>
+            ) : (
+              "Fleet solutions \u2022 Partnerships \u2022 Technology"
+            )}
           </span>
         </div>
       </form>

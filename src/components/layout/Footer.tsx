@@ -43,6 +43,14 @@ export function Footer() {
             <a href="mailto:hello@quickmate.in">
               Email us <ArrowUpRight aria-hidden="true" />
             </a>
+            <a
+              href="https://www.linkedin.com/company/quickmate"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="QUICKMATE on LinkedIn"
+            >
+              LinkedIn <ArrowUpRight aria-hidden="true" />
+            </a>
             <span className="footer-region">ODISHA, INDIA</span>
           </div>
         </div>

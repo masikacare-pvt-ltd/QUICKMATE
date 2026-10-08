@@ -1,5 +1,3 @@
-"use client";
-
 import { Activity, Cpu, Radio, ShieldCheck, Zap } from "lucide-react";
 
 export function IndustrialTicker() {

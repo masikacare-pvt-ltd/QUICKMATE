@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowRight, Gauge, MapPin, Route as RouteIcon, ShieldCheck } from "lucide-react";
+import { ArrowDownRight, ArrowRight, Gauge, Route as RouteIcon, ShieldCheck } from "lucide-react";
 
 export function Hero() {
   const [telemetry, setTelemetry] = useState({ speed: 62, distance: 184 });

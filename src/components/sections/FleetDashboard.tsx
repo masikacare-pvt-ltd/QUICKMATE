@@ -3,13 +3,10 @@
 import { useState } from "react";
 import {
   ArrowUpRight,
-  ChevronRight,
   Gauge,
   Route as RouteIcon,
   ShieldCheck,
   AlertTriangle,
-  Clock,
-  Radio,
   X,
 } from "lucide-react";
 import { vehicles, type Vehicle } from "@/lib/data";
