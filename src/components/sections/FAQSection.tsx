@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { faqs } from "@/lib/data";
+import { DecryptText } from "@/components/ui/DecryptText";
 
 export function FAQSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -16,7 +17,9 @@ export function FAQSection() {
       <div className="faq-heading">
         <div className="section-kicker">
           <span>10</span>
-          <span>GOOD TO KNOW</span>
+          <span>
+            <DecryptText text="GOOD TO KNOW" />
+          </span>
         </div>
         <h2>
           QUESTIONS,

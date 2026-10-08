@@ -10,6 +10,8 @@ import {
   X,
 } from "lucide-react";
 import { vehicles, type Vehicle } from "@/lib/data";
+import { LiveDispatchFeed } from "@/components/ui/LiveDispatchFeed";
+import { DecryptText } from "@/components/ui/DecryptText";
 
 export function FleetDashboard() {
   const [activeVehicle, setActiveVehicle] = useState<Vehicle>(vehicles[0]);
@@ -25,7 +27,9 @@ export function FleetDashboard() {
       <div className="dashboard-intro">
         <div className="section-kicker">
           <span>06</span>
-          <span>LIVE FLEET VIEW</span>
+          <span>
+            <DecryptText text="LIVE FLEET VIEW" />
+          </span>
         </div>
         <h2>
           YOUR FLEET.
@@ -233,6 +237,9 @@ export function FleetDashboard() {
             </div>
           </aside>
         </div>
+
+        {/* Live Autonomous Fleet Event Stream */}
+        <LiveDispatchFeed />
 
         {/* Console Footer */}
         <div className="console-footer">

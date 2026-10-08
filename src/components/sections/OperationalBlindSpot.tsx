@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Clock3 } from "lucide-react";
 import { signalIssues } from "@/lib/data";
+import { DecryptText } from "@/components/ui/DecryptText";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export function OperationalBlindSpot() {
   return (
     <section className="intro-band" id="about">
       <div className="section-kicker">
         <span>01</span>
-        <span>THE OPERATIONAL BLIND SPOT</span>
+        <span>
+          <DecryptText text="THE OPERATIONAL BLIND SPOT" />
+        </span>
       </div>
 
       <div className="intro-layout">
@@ -61,7 +65,8 @@ export function OperationalBlindSpot() {
         </div>
       </div>
 
-      <div className="change-line tech-corner-brackets">
+      <div className="change-line tech-corner-brackets relative overflow-hidden">
+        <BorderBeam size={220} duration={10} colorFrom="var(--lime)" colorTo="#FF6A00" />
         <div className="change-line-lead">
           <span className="change-line-kicker">PARADIGM SHIFT</span>
           <strong>QUICKMATE CHANGES THAT.</strong>

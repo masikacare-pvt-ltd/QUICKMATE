@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { DecryptText } from "@/components/ui/DecryptText";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export function FounderSection() {
   return (
@@ -6,7 +8,9 @@ export function FounderSection() {
       <div className="founder-index">
         <div className="section-kicker">
           <span>09</span>
-          <span>THE PEOPLE BEHIND THE PLATFORM</span>
+          <span>
+            <DecryptText text="THE PEOPLE BEHIND THE PLATFORM" />
+          </span>
         </div>
         <h2>
           BUILT BY
@@ -19,7 +23,8 @@ export function FounderSection() {
         </p>
       </div>
 
-      <article className="founder-profile tech-corner-brackets">
+      <article className="founder-profile tech-corner-brackets relative overflow-hidden">
+        <BorderBeam size={240} duration={8} colorFrom="var(--lime)" colorTo="#FF6A00" />
         <div className="founder-image-wrapper">
           <Image
             src="/assets/vishwa-pasayat.png"

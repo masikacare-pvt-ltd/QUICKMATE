@@ -1,12 +1,16 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { differences } from "@/lib/data";
+import { DecryptText } from "@/components/ui/DecryptText";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export function WhyQuickmate() {
   return (
     <section className="difference-section">
       <div className="section-kicker">
         <span>07</span>
-        <span>WHY QUICKMATE</span>
+        <span>
+          <DecryptText text="WHY QUICKMATE" />
+        </span>
       </div>
 
       <div className="difference-heading">
@@ -29,7 +33,8 @@ export function WhyQuickmate() {
         ))}
       </div>
 
-      <div className="question-shift tech-corner-brackets">
+      <div className="question-shift tech-corner-brackets relative overflow-hidden">
+        <BorderBeam size={160} duration={8} colorFrom="#FF6A00" colorTo="var(--lime)" />
         <div className="question-side">
           <small>TRADITIONAL GPS</small>
           <strong>

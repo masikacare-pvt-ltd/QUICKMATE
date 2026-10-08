@@ -12,6 +12,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { dataExperiences, type DataExperience } from "@/lib/data";
+import { DecryptText } from "@/components/ui/DecryptText";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 const iconMap = {
   MapPin: MapPin,
@@ -33,7 +35,9 @@ export function DataExplorer() {
     <section className="data-section" id="data-demo">
       <div className="section-kicker">
         <span>05</span>
-        <span>WHAT QUICKMATE SEES</span>
+        <span>
+          <DecryptText text="WHAT QUICKMATE SEES" />
+        </span>
       </div>
 
       <div className="data-heading">
@@ -80,11 +84,12 @@ export function DataExplorer() {
 
         {/* Live Interactive Visualization Panel */}
         <div
-          className="data-panel tech-corner-brackets"
+          className="data-panel tech-corner-brackets relative overflow-hidden"
           id="data-panel"
           role="tabpanel"
           aria-labelledby={`tab-${activeData.id}`}
         >
+          <BorderBeam size={220} duration={9} colorFrom="var(--lime)" colorTo="#FF6A00" />
           <div className="data-panel-top">
             <span>
               <ActiveIcon aria-hidden="true" /> {activeData.label}

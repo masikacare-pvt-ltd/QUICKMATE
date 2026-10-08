@@ -6,6 +6,7 @@ import {
   Signal,
 } from "lucide-react";
 import { processSteps } from "@/lib/data";
+import { DecryptText } from "@/components/ui/DecryptText";
 
 const iconMap = {
   Radio: Radio,
@@ -20,7 +21,9 @@ export function HowItWorks() {
     <section className="journey-section" id="how-it-works">
       <div className="section-kicker">
         <span>03</span>
-        <span>HOW QUICKMATE WORKS</span>
+        <span>
+          <DecryptText text="HOW QUICKMATE WORKS" />
+        </span>
       </div>
 
       <div className="journey-heading">

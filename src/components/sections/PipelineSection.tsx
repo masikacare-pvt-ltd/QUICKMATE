@@ -7,6 +7,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { pipelineSteps } from "@/lib/data";
+import { DecryptText } from "@/components/ui/DecryptText";
 
 const iconMap = {
   RouteIcon: RouteIcon,
@@ -23,7 +24,9 @@ export function PipelineSection() {
       <div className="pipeline-copy">
         <div className="section-kicker">
           <span>02</span>
-          <span>ABOUT QUICKMATE</span>
+          <span>
+            <DecryptText text="ABOUT QUICKMATE" />
+          </span>
         </div>
         <h2>
           FROM TRACKING

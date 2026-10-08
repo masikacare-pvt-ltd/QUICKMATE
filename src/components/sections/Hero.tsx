@@ -3,18 +3,21 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowRight, Gauge, Route as RouteIcon, ShieldCheck } from "lucide-react";
+import { ArrowDownRight, ArrowRight, Gauge, Route as RouteIcon, ShieldCheck, Radio } from "lucide-react";
+import { DecryptText } from "@/components/ui/DecryptText";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export function Hero() {
-  const [telemetry, setTelemetry] = useState({ speed: 62, distance: 184 });
+  const [telemetry, setTelemetry] = useState({ speed: 62, distance: 184, ping: 16 });
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setTelemetry((prev) => ({
         speed: prev.speed >= 64 ? 61 : prev.speed + 1,
         distance: prev.distance >= 186 ? 184 : prev.distance + 1,
+        ping: 14 + Math.floor(Math.random() * 5),
       }));
-    }, 3200);
+    }, 2800);
     return () => window.clearInterval(timer);
   }, []);
 
@@ -35,7 +38,8 @@ export function Hero() {
       {/* Main Content Area */}
       <div className="hero-content">
         <p className="eyebrow">
-          <span className="live-dot" /> AI + IoT FOR THE FUTURE OF FLEET MANAGEMENT
+          <span className="live-dot" />{" "}
+          <DecryptText text="AI + IoT FOR THE FUTURE OF FLEET MANAGEMENT" />
         </p>
 
         <h1 id="hero-title">
@@ -52,8 +56,10 @@ export function Hero() {
         </p>
 
         <div className="hero-actions">
-          <Link href="#about" className="btn-lime">
-            Explore QUICKMATE <ArrowRight aria-hidden="true" />
+          <Link href="#about" className="btn-lime relative overflow-hidden group">
+            <span className="relative z-10 flex items-center gap-2">
+              Explore QUICKMATE <ArrowRight aria-hidden="true" />
+            </span>
           </Link>
           <Link className="text-link" href="#how-it-works">
             See How It Works <ArrowDownRight aria-hidden="true" />
@@ -62,7 +68,8 @@ export function Hero() {
       </div>
 
       {/* Mobile-Only Dedicated Visual Stage (Clean hierarchy: visual + chips + route) */}
-      <div className="hero-mobile-stage tech-corner-brackets" aria-label="Live Vehicle Telemetry Preview">
+      <div className="hero-mobile-stage tech-corner-brackets relative overflow-hidden" aria-label="Live Vehicle Telemetry Preview">
+        <BorderBeam size={180} duration={9} colorFrom="var(--lime)" colorTo="#FF6A00" />
         <div className="hero-mobile-visual relative overflow-hidden">
           <Image
             src="/assets/quickmate-highway.jpg"
@@ -99,10 +106,10 @@ export function Hero() {
             </div>
           </div>
           <div className="hero-mobile-chip">
-            <div className="chip-icon chip-status"><ShieldCheck size={14} /></div>
+            <div className="chip-icon chip-status"><Radio size={14} /></div>
             <div>
-              <strong>NORMAL</strong>
-              <small>STATUS</small>
+              <strong>{telemetry.ping} ms</strong>
+              <small>4G UPLINK</small>
             </div>
           </div>
         </div>
@@ -126,41 +133,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Desktop Floating Badges (Hidden on mobile via CSS) */}
-      <div className="hero-coordinate" aria-label="Geographic coordinates">
-        20&deg;27&apos; N &nbsp; 85&deg;53&apos; E{" "}
-        <span>ODISHA, INDIA</span>
-      </div>
-
-      <div className="hero-status">
-        <span className="pulse-ring" aria-hidden="true">
-          <span />
-        </span>
-        <div>
-          <small>VEHICLE 104</small>
-          <strong>LIVE JOURNEY</strong>
-        </div>
-        <span className="status-divider" aria-hidden="true" />
-        <div>
-          <small>ROUTE</small>
-          <strong>NH-16</strong>
-        </div>
-      </div>
-
-      <div className="hero-route" aria-label="Active route preview">
-        <span className="route-label">ACTIVE ROUTE</span>
-        <div className="route-line" aria-hidden="true">
-          <span />
-          <i />
-          <i />
-          <i />
-        </div>
-        <div className="route-destinations">
-          <span>Bhubaneswar</span>
-          <span>Berhampur</span>
-        </div>
-      </div>
-
       <div className="hero-bottomline">
         <span>BUILT FOR THE ROAD AHEAD</span>
         <span className="scroll-cue">
@@ -170,7 +142,7 @@ export function Hero() {
       </div>
 
       <div className="telemetry-live" aria-live="polite">
-        Vehicle 104 telemetry: {telemetry.speed} kilometres per hour, {telemetry.distance} kilometres travelled.
+        Vehicle 104 telemetry: {telemetry.speed} kilometres per hour, {telemetry.distance} kilometres travelled, {telemetry.ping} milliseconds uplink.
       </div>
     </section>
   );

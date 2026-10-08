@@ -3,9 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Cpu, Radio, Activity, Navigation } from "lucide-react";
+import { ArrowRight, Cpu, Radio, Activity, Navigation, Sparkles } from "lucide-react";
+import { SensorOscilloscope, type SensorType } from "@/components/ui/SensorOscilloscope";
+import { DecryptText } from "@/components/ui/DecryptText";
 
-type HotspotKey = "gps" | "motion" | "cellular" | "intel";
+type HotspotKey = SensorType;
 
 interface HotspotInfo {
   key: HotspotKey;
@@ -58,11 +60,13 @@ export function DeviceSection() {
   const CurrentIcon = currentHotspot.icon;
 
   return (
-    <section className="device-section">
+    <section className="device-section" id="technology">
       <div className="device-copy">
         <div className="section-kicker">
           <span>04</span>
-          <span>IN-VEHICLE HARDWARE</span>
+          <span>
+            <DecryptText text="IN-VEHICLE HARDWARE" />
+          </span>
         </div>
         <p className="eyebrow">MADE FOR THE ROAD. BUILT TO STAY.</p>
         <h2>
@@ -74,6 +78,17 @@ export function DeviceSection() {
         <Link className="text-link" href="#data-demo">
           Explore the technology <ArrowRight aria-hidden="true" />
         </Link>
+
+        {/* Desktop Live Telemetry Oscilloscope Console */}
+        <div className="mt-8 hidden lg:block">
+          <div className="mb-2 flex items-center justify-between text-[11px] font-mono text-white/50">
+            <span>LIVE TELEMETRY LAB</span>
+            <span className="text-[var(--lime)] flex items-center gap-1">
+              <Sparkles size={11} /> SELECT A SENSOR TO PROBE
+            </span>
+          </div>
+          <SensorOscilloscope sensor={activeHotspot} />
+        </div>
       </div>
 
       <div className="device-stage">
@@ -163,6 +178,11 @@ export function DeviceSection() {
               </span>
             </div>
             <p className="info-description">{currentHotspot.description}</p>
+          </div>
+
+          {/* Mobile Live Sensor Oscilloscope & Waveform */}
+          <div className="mt-3">
+            <SensorOscilloscope sensor={activeHotspot} />
           </div>
         </div>
 

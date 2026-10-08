@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { ArrowRight, ArrowUpRight, Check, MapPin } from "lucide-react";
+import { DecryptText } from "@/components/ui/DecryptText";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 
 export function ContactSection() {
   const [formSent, setFormSent] = useState(false);
@@ -53,7 +55,9 @@ export function ContactSection() {
       <div className="contact-copy">
         <div className="section-kicker">
           <span>11</span>
-          <span>START A CONVERSATION</span>
+          <span>
+            <DecryptText text="START A CONVERSATION" />
+          </span>
         </div>
         <h2>
           LET&apos;S TALK
@@ -73,7 +77,8 @@ export function ContactSection() {
         </div>
       </div>
 
-      <form className="contact-form" onSubmit={handleSubmit}>
+      <form className="contact-form relative overflow-hidden" onSubmit={handleSubmit}>
+        <BorderBeam size={280} duration={8} colorFrom="#FF6A00" colorTo="var(--lime)" />
         <div className="form-topline">
           <span>QUICKMATE / DIRECT INQUIRY</span>
           <span>01 &ndash; 04</span>
@@ -122,43 +127,26 @@ export function ContactSection() {
           MESSAGE
           <textarea
             name="message"
+            rows={4}
             value={formData.message}
             onChange={handleChange}
-            placeholder="What would you like to explore?"
-            rows={4}
+            placeholder="Tell us about your fleet: number of vehicles, route types, current challenges..."
             required
           />
         </label>
 
-        <div className="form-submit">
-          <button className="btn-lime" type="submit">
-            {formSent ? "Redirecting to Mail..." : "Start a conversation"}
-            {formSent ? (
-              <Check aria-hidden="true" />
-            ) : (
-              <ArrowRight aria-hidden="true" />
-            )}
-          </button>
+        <button className="form-submit" type="submit">
           <span>
-            {formSent ? (
-              <>
-                Opening email app... If it didn&apos;t open,{" "}
-                <a
-                  href={`mailto:query.quickmate@gmail.com?subject=${encodeURIComponent(
-                    `QUICKMATE Inquiry - ${formData.name || "Fleet Consultation"}`
-                  )}&body=${encodeURIComponent(
-                    `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`
-                  )}`}
-                  className="underline text-[var(--lime)] font-semibold"
-                >
-                  click here to email query.quickmate@gmail.com
-                </a>
-              </>
-            ) : (
-              "Fleet solutions \u2022 Partnerships \u2022 Technology"
-            )}
+            {formSent ? "Redirecting to Mail Client..." : "START CONVERSATION"}
           </span>
-        </div>
+          {formSent ? <Check aria-hidden="true" /> : <ArrowRight aria-hidden="true" />}
+        </button>
+
+        {formSent && (
+          <p className="mt-3 text-xs text-[var(--lime)] font-mono text-center">
+            Opening your email client to send query to query.quickmate@gmail.com...
+          </p>
+        )}
       </form>
     </section>
   );

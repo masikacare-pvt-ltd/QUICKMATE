@@ -159,6 +159,21 @@
   }
 }
 
+@keyframes borderBeam {
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes borderBeamSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .tech-corner-brackets {
   position: relative;
 }
