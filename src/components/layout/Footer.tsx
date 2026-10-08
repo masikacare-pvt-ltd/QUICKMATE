@@ -40,7 +40,7 @@ export function Footer() {
           <div>
             <span>CONNECT</span>
             <Link href="#contact">Contact</Link>
-            <a href="mailto:query.quickmate@gmail.com">
+            <a href="mailto:hello@quickmate.in">
               Email us <ArrowUpRight aria-hidden="true" />
             </a>
             <span className="footer-region">ODISHA, INDIA</span>
