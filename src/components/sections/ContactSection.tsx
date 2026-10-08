@@ -7,10 +7,8 @@ export function ContactSection() {
   const [formSent, setFormSent] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
-    company: "",
     email: "",
     phone: "",
-    fleetSize: "",
     message: "",
   });
 
@@ -19,17 +17,15 @@ export function ContactSection() {
     setFormSent(true);
 
     const subject = encodeURIComponent(
-      `QUICKMATE Inquiry - ${formData.name || "Fleet Consultation"}${formData.company ? ` (${formData.company})` : ""}`
+      `QUICKMATE Inquiry - ${formData.name || "Fleet Consultation"}`
     );
 
     const bodyLines = [
       "Hello QUICKMATE Team,",
       "",
       `Name: ${formData.name || "N/A"}`,
-      `Company: ${formData.company || "N/A"}`,
-      `Email: ${formData.email || "N/A"}`,
-      `Phone: ${formData.phone || "N/A"}`,
-      `Fleet Size: ${formData.fleetSize || "N/A"}`,
+      `Email ID: ${formData.email || "N/A"}`,
+      `Contact Number: ${formData.phone || "N/A"}`,
       "",
       "Message:",
       formData.message || "I would like to explore QUICKMATE fleet solutions.",
@@ -39,13 +35,11 @@ export function ContactSection() {
     ];
 
     const body = encodeURIComponent(bodyLines.join("\n"));
-    window.location.href = `mailto:hello@quickmate.in?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:query.quickmate@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -70,8 +64,8 @@ export function ContactSection() {
           Tell us a little about your fleet, your operation, or the partnership
           you have in mind.
         </p>
-        <a className="contact-email" href="mailto:hello@quickmate.in">
-          hello@quickmate.in <ArrowUpRight aria-hidden="true" />
+        <a className="contact-email" href="mailto:query.quickmate@gmail.com">
+          query.quickmate@gmail.com <ArrowUpRight aria-hidden="true" />
         </a>
         <div className="contact-location">
           <MapPin aria-hidden="true" />
@@ -81,8 +75,8 @@ export function ContactSection() {
 
       <form className="contact-form" onSubmit={handleSubmit}>
         <div className="form-topline">
-          <span>QUICKMATE / CONTACT</span>
-          <span>01 &ndash; 06</span>
+          <span>QUICKMATE / DIRECT INQUIRY</span>
+          <span>01 &ndash; 04</span>
         </div>
 
         <div className="form-row">
@@ -93,63 +87,35 @@ export function ContactSection() {
               value={formData.name}
               onChange={handleChange}
               autoComplete="name"
-              placeholder="Your name"
+              placeholder="Your full name"
               required
             />
           </label>
           <label>
-            COMPANY
-            <input
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              autoComplete="organization"
-              placeholder="Company name"
-            />
-          </label>
-        </div>
-
-        <div className="form-row">
-          <label>
-            EMAIL
+            EMAIL ID
             <input
               name="email"
               type="email"
               value={formData.email}
               onChange={handleChange}
               autoComplete="email"
-              placeholder="you@company.com"
+              placeholder="you@example.com"
               required
-            />
-          </label>
-          <label>
-            PHONE
-            <input
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              autoComplete="tel"
-              placeholder="+91"
             />
           </label>
         </div>
 
         <label>
-          NUMBER OF VEHICLES
-          <select
-            name="fleetSize"
-            value={formData.fleetSize}
+          CONTACT NUMBER
+          <input
+            name="phone"
+            type="tel"
+            value={formData.phone}
             onChange={handleChange}
-          >
-            <option value="" disabled>
-              Select fleet size
-            </option>
-            <option value="1-10">1&ndash;10 vehicles</option>
-            <option value="11-50">11&ndash;50 vehicles</option>
-            <option value="51-200">51&ndash;200 vehicles</option>
-            <option value="200+">200+ vehicles</option>
-          </select>
+            autoComplete="tel"
+            placeholder="+91 98765 43210"
+            required
+          />
         </label>
 
         <label>
@@ -159,13 +125,14 @@ export function ContactSection() {
             value={formData.message}
             onChange={handleChange}
             placeholder="What would you like to explore?"
-            rows={3}
+            rows={4}
+            required
           />
         </label>
 
         <div className="form-submit">
           <button className="btn-lime" type="submit">
-            {formSent ? "Message noted" : "Start a conversation"}
+            {formSent ? "Redirecting to Mail..." : "Start a conversation"}
             {formSent ? (
               <Check aria-hidden="true" />
             ) : (
@@ -174,7 +141,7 @@ export function ContactSection() {
           </button>
           <span>
             {formSent
-              ? "Thank you. Please email us at hello@quickmate.in to continue the conversation."
+              ? "Opening your email app... If it didn't open, write to query.quickmate@gmail.com"
               : "Fleet solutions \u2022 Partnerships \u2022 Technology"}
           </span>
         </div>
