@@ -40,12 +40,16 @@ export function HowItWorks() {
           const IconComponent = iconMap[iconName];
           return (
             <article className="journey-step" key={number}>
-              <span className="journey-index">{number}</span>
-              <span className="journey-icon">
-                <IconComponent aria-hidden="true" />
-              </span>
-              <h3>{title}</h3>
-              <p>{description}</p>
+              <div className="journey-node">
+                <span className="journey-index">{number}</span>
+                <span className="journey-icon">
+                  <IconComponent aria-hidden="true" />
+                </span>
+              </div>
+              <div className="journey-body">
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
             </article>
           );
         })}

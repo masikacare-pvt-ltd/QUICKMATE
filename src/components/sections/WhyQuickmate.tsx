@@ -29,7 +29,7 @@ export function WhyQuickmate() {
         ))}
       </div>
 
-      <div className="question-shift">
+      <div className="question-shift tech-corner-brackets">
         <div className="question-side">
           <small>TRADITIONAL GPS</small>
           <strong>

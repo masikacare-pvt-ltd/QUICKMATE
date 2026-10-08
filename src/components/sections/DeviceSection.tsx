@@ -80,6 +80,9 @@ export function DeviceSection() {
         <div className="device-grid" aria-hidden="true" />
         <div className="device-orbit orbit-one" aria-hidden="true" />
         <div className="device-orbit orbit-two" aria-hidden="true" />
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30" aria-hidden="true">
+          <div className="h-72 w-72 sm:h-96 sm:w-96 rounded-full border border-dashed border-[var(--lime)]/30 animate-[radarSpin_50s_linear_infinite]" />
+        </div>
 
         <div className="device-image-wrapper">
           <Image
@@ -126,39 +129,41 @@ export function DeviceSection() {
           <i aria-hidden="true" /> ONBOARD <b>INTELLIGENCE</b>
         </button>
 
-        {/* Mobile Hotspot Selector Bar (min 44x44px touch targets) */}
-        <div className="device-mobile-selector" role="tablist" aria-label="Device Modules">
-          {hotspots.map((h) => {
-            const Icon = h.icon;
-            const isSelected = activeHotspot === h.key;
-            return (
-              <button
-                key={h.key}
-                type="button"
-                role="tab"
-                aria-selected={isSelected}
-                className={`device-mobile-btn ${isSelected ? "selected" : ""}`}
-                onClick={() => setActiveHotspot(h.key)}
-              >
-                <Icon size={16} aria-hidden="true" />
-                <span>{h.label}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Mobile Dynamic Hardware Info Panel */}
-        <div className="device-mobile-info" role="tabpanel" aria-live="polite">
-          <div className="device-mobile-info-top">
-            <span className="info-title">
-              <CurrentIcon size={14} aria-hidden="true" />
-              {currentHotspot.title}
-            </span>
-            <span className="info-badge">
-              <i aria-hidden="true" /> ACTIVE
-            </span>
+        {/* Mobile Integrated Hardware Capability Console */}
+        <div className="device-mobile-console tech-corner-brackets" role="region" aria-label="Hardware Capabilities">
+          <div className="device-mobile-selector" role="tablist" aria-label="Device Modules">
+            {hotspots.map((h) => {
+              const Icon = h.icon;
+              const isSelected = activeHotspot === h.key;
+              return (
+                <button
+                  key={h.key}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  className={`device-mobile-btn ${isSelected ? "selected" : ""}`}
+                  onClick={() => setActiveHotspot(h.key)}
+                >
+                  <Icon size={14} aria-hidden="true" />
+                  <span>{h.label}</span>
+                </button>
+              );
+            })}
           </div>
-          <p className="info-description">{currentHotspot.description}</p>
+
+          {/* Mobile Dynamic Hardware Info Panel */}
+          <div className="device-mobile-info" role="tabpanel" aria-live="polite">
+            <div className="device-mobile-info-top">
+              <span className="info-title">
+                <CurrentIcon size={14} aria-hidden="true" />
+                {currentHotspot.title}
+              </span>
+              <span className="info-badge">
+                <i aria-hidden="true" /> ACTIVE SENSOR
+              </span>
+            </div>
+            <p className="info-description">{currentHotspot.description}</p>
+          </div>
         </div>
 
         <div className="device-footnote">

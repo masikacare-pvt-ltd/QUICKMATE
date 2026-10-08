@@ -62,8 +62,8 @@ export function Hero() {
       </div>
 
       {/* Mobile-Only Dedicated Visual Stage (Clean hierarchy: visual + chips + route) */}
-      <div className="hero-mobile-stage" aria-label="Live Vehicle Telemetry Preview">
-        <div className="hero-mobile-visual">
+      <div className="hero-mobile-stage tech-corner-brackets" aria-label="Live Vehicle Telemetry Preview">
+        <div className="hero-mobile-visual relative overflow-hidden">
           <Image
             src="/assets/quickmate-highway.jpg"
             alt="Heavy vehicle operating on highway"
@@ -73,6 +73,10 @@ export function Hero() {
             priority
           />
           <div className="hero-mobile-visual-overlay" />
+          {/* Scanning beam effect */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-30">
+            <div className="h-20 w-full bg-gradient-to-b from-transparent via-[var(--lime)]/20 to-transparent animate-[scanlineBeam_5s_ease-in-out_infinite]" />
+          </div>
           <span className="hero-mobile-tag">
             <span className="live-dot" /> LIVE VEHICLE 104
           </span>

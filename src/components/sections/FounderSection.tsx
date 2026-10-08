@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function FounderSection() {
   return (
     <section className="founder-section" id="team">
@@ -17,14 +19,20 @@ export function FounderSection() {
         </p>
       </div>
 
-      <article className="founder-profile">
-        <div
-          className="founder-monogram"
-          aria-label="Abstract founder profile initials VP"
-        >
-          <span>V</span>
-          <span>P</span>
-          <i aria-hidden="true" />
+      <article className="founder-profile tech-corner-brackets">
+        <div className="founder-image-wrapper">
+          <Image
+            src="/assets/vishwa-pasayat.png"
+            alt="Vishma Pasayat - Founder & Entrepreneur"
+            width={480}
+            height={600}
+            className="founder-photo"
+            priority
+          />
+          <div className="founder-photo-gradient" />
+          <div className="founder-photo-badge">
+            <span className="live-dot" /> FOUNDER / 01 &bull; ODISHA, INDIA
+          </div>
         </div>
 
         <div className="founder-caption">

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { InteractiveSpotlight } from "@/components/ui/InteractiveSpotlight";
+import { IndustrialTicker } from "@/components/ui/IndustrialTicker";
 import { Hero } from "@/components/sections/Hero";
 import { OperationalBlindSpot } from "@/components/sections/OperationalBlindSpot";
 import { BrandMoment } from "@/components/sections/BrandMoment";
@@ -20,9 +22,11 @@ import { ContactSection } from "@/components/sections/ContactSection";
 export default function HomePage() {
   return (
     <>
+      <InteractiveSpotlight />
       <Navbar />
       <main id="main-content">
         <Hero />
+        <IndustrialTicker />
         <OperationalBlindSpot />
         <BrandMoment />
         <PipelineSection />

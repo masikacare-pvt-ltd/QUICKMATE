@@ -80,7 +80,7 @@ export function DataExplorer() {
 
         {/* Live Interactive Visualization Panel */}
         <div
-          className="data-panel"
+          className="data-panel tech-corner-brackets"
           id="data-panel"
           role="tabpanel"
           aria-labelledby={`tab-${activeData.id}`}
@@ -94,7 +94,12 @@ export function DataExplorer() {
             </span>
           </div>
 
-          <div className={`demo-map demo-${activeData.id}`}>
+          <div className={`demo-map demo-${activeData.id} relative overflow-hidden`}>
+            {/* Animated scanning radar line */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-25" aria-hidden="true">
+              <div className="h-16 w-full bg-gradient-to-b from-transparent via-[var(--lime)]/30 to-transparent animate-[scanlineBeam_4s_linear_infinite]" />
+            </div>
+
             <div className="map-grid" aria-hidden="true" />
             <div className="map-road road-h" aria-hidden="true" />
             <div className="map-road road-v" aria-hidden="true" />

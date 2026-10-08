@@ -79,7 +79,12 @@ export function FleetDashboard() {
 
         {/* Console Body: Map + Vehicle List */}
         <div className="console-body">
-          <div className="console-map" aria-label="Interactive Fleet Map">
+          <div className="console-map relative overflow-hidden" aria-label="Interactive Fleet Map">
+            {/* Animated Radar Scanning Beam */}
+            <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-25" aria-hidden="true">
+              <div className="h-20 w-full bg-gradient-to-b from-transparent via-[var(--lime)]/30 to-transparent animate-[scanlineBeam_5s_linear_infinite]" />
+            </div>
+
             <div className="console-map-grid" aria-hidden="true" />
             <div className="console-map-road console-road-a" aria-hidden="true" />
             <div className="console-map-road console-road-b" aria-hidden="true" />
@@ -178,7 +183,7 @@ export function FleetDashboard() {
             </div>
 
             {/* Selected Vehicle Focus Telemetry Card */}
-            <div className="vehicle-focus">
+            <div className="vehicle-focus tech-corner-brackets">
               <div className="vehicle-focus-heading">
                 <span>FOCUSED TELEMETRY</span>
                 <b>VEHICLE #{activeVehicle.id}</b>

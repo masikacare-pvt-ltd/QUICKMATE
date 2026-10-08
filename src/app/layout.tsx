@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "QUICKMATE | AIoT-Powered Intelligent Fleet Management",
+  title: "QUICKMATE",
   description:
     "QUICKMATE is an AIoT-powered fleet management platform for heavy vehicles, providing real-time visibility, intelligent insights and smarter fleet operations.",
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   creator: "QUICKMATE",
   metadataBase: new URL("https://quickmate.in"),
   openGraph: {
-    title: "QUICKMATE | AIoT-Powered Intelligent Fleet Management",
+    title: "QUICKMATE",
     description:
       "Don’t just track your fleet. Understand it. Smarter fleets. Quicker decisions.",
     url: "https://quickmate.in",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "QUICKMATE | AIoT-Powered Intelligent Fleet Management",
+    title: "QUICKMATE",
     description:
       "Don’t just track your fleet. Understand it. Smarter fleets. Quicker decisions.",
     images: ["/assets/quickmate-highway.jpg"],
