@@ -8,7 +8,6 @@ interface DecryptTextProps {
   characters?: string;
   speed?: number;
   triggerOnHover?: boolean;
-  revealDuration?: number;
 }
 
 const DEFAULT_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#_@%*<>";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Terminal, ShieldAlert, CheckCircle2, Radio, Bell } from "lucide-react";
+import { Terminal } from "lucide-react";
 
 interface DispatchEvent {
   id: string;
@@ -83,7 +83,7 @@ export function LiveDispatchFeed() {
         <div className="flex items-center gap-2">
           <Terminal size={12} className="text-[var(--lime)]" />
           <span className="text-[var(--lime)] font-bold">LIVE DISPATCH FEED</span>
-          <span className="text-white/30">//</span>
+          <span className="text-white/30">{"//"}</span>
           <span>AUTONOMOUS EVENT STREAM</span>
         </div>
         <div className="flex items-center gap-2">

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { Navigation, Activity, Radio, Cpu, RefreshCw, Zap } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Navigation, Radio, Cpu, Zap } from "lucide-react";
 
 export type SensorType = "gps" | "motion" | "cellular" | "intel";
 

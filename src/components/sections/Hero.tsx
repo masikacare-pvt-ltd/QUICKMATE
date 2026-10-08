@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowRight, Gauge, Route as RouteIcon, ShieldCheck, Radio } from "lucide-react";
+import { ArrowDownRight, ArrowRight, Gauge, Route as RouteIcon, Radio } from "lucide-react";
 import { DecryptText } from "@/components/ui/DecryptText";
 import { BorderBeam } from "@/components/ui/BorderBeam";
 
