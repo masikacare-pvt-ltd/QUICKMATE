@@ -69,8 +69,12 @@ export const metadata: Metadata = {
     images: ["/assets/quickmate-highway.jpg"],
   },
   icons: {
-    icon: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/assets/quickmate-logo.jpeg", type: "image/jpeg" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/assets/quickmate-logo.jpeg",
   },
   robots: {
     index: true,

@@ -1,7 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="7" fill="#07090F" />
-  <g transform="translate(16,16)">
-    <!-- infinity loop in bright orange and cyan -->
-    <path d="M-6 -3 C-9 -6 -13 -3 -13 0 C-13 3 -9 6 -6 3 L6 -3 C9 -6 13 -3 13 0 C13 3 9 6 6 3 Z" fill="none" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle cx="50" cy="50" r="48" fill="#07090F" />
+  
+  <!-- Top Orange Kinetic Speed Hand & Streaks -->
+  <g fill="#FF6A00">
+    <rect x="10" y="24" width="14" height="3.5" rx="1.75" />
+    <rect x="14" y="30" width="12" height="3.5" rx="1.75" />
+    <path d="M 22 25 C 38 10, 68 12, 82 28 C 72 20, 52 20, 42 27 C 36 31, 30 33, 24 33 C 20 33, 17 31, 16 29 Z" />
+  </g>
+  
+  <!-- Center Infinity Symbol in Cyan-Blue -->
+  <path d="M 40 46 C 35 41, 29 43, 29 50 C 29 57, 35 59, 40 54 L 60 46 C 65 41, 71 43, 71 50 C 71 57, 65 59, 60 54 Z"
+        fill="none" stroke="#0094FF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Bottom Cyan-Blue Kinetic Speed Hand & Streaks -->
+  <g fill="#0084FF">
+    <rect x="76" y="72" width="14" height="3.5" rx="1.75" />
+    <rect x="74" y="66" width="12" height="3.5" rx="1.75" />
+    <path d="M 78 75 C 62 90, 32 88, 18 72 C 28 80, 48 80, 58 73 C 64 69, 70 67, 76 67 C 80 67, 83 69, 84 71 Z" />
   </g>
 </svg>

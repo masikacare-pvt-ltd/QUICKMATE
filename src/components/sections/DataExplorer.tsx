@@ -50,6 +50,7 @@ export function DataExplorer() {
       </div>
 
       <div className="data-explorer">
+        {/* Desktop & Mobile Tab Selector */}
         <div
           className="data-selector"
           role="tablist"
@@ -68,15 +69,16 @@ export function DataExplorer() {
                 aria-controls="data-panel"
                 onClick={() => setActiveData(item)}
               >
-                <span>0{index + 1}</span>
-                <Icon aria-hidden="true" />
-                <strong>{item.label}</strong>
-                <ChevronRight aria-hidden="true" />
+                <span className="tab-num">0{index + 1}</span>
+                <Icon aria-hidden="true" className="tab-icon" />
+                <strong className="tab-label">{item.label}</strong>
+                <ChevronRight aria-hidden="true" className="tab-arrow" />
               </button>
             );
           })}
         </div>
 
+        {/* Live Interactive Visualization Panel */}
         <div
           className="data-panel"
           id="data-panel"

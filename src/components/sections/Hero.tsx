@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowRight } from "lucide-react";
+import { ArrowDownRight, ArrowRight, Gauge, MapPin, Route as RouteIcon, ShieldCheck } from "lucide-react";
 
 export function Hero() {
   const [telemetry, setTelemetry] = useState({ speed: 62, distance: 184 });
@@ -20,6 +20,7 @@ export function Hero() {
 
   return (
     <section className="hero" id="home" aria-labelledby="hero-title">
+      {/* Background for Desktop / Tablet */}
       <Image
         className="hero-image"
         src="/assets/quickmate-highway.jpg"
@@ -31,15 +32,18 @@ export function Hero() {
       <div className="hero-shade" />
       <div className="hero-grain" />
 
+      {/* Main Content Area */}
       <div className="hero-content">
         <p className="eyebrow">
           <span className="live-dot" /> AI + IoT FOR THE FUTURE OF FLEET MANAGEMENT
         </p>
+
         <h1 id="hero-title">
           SMARTER FLEETS.
           <br />
           <span>QUICKER DECISIONS.</span>
         </h1>
+
         <p className="hero-lead">
           QUICKMATE turns heavy vehicles into connected, intelligent assets.
         </p>
@@ -57,6 +61,68 @@ export function Hero() {
         </div>
       </div>
 
+      {/* Mobile-Only Dedicated Visual Stage (Clean hierarchy: visual + chips + route) */}
+      <div className="hero-mobile-stage" aria-label="Live Vehicle Telemetry Preview">
+        <div className="hero-mobile-visual">
+          <Image
+            src="/assets/quickmate-highway.jpg"
+            alt="Heavy vehicle operating on highway"
+            width={600}
+            height={340}
+            className="hero-mobile-img"
+            priority
+          />
+          <div className="hero-mobile-visual-overlay" />
+          <span className="hero-mobile-tag">
+            <span className="live-dot" /> LIVE VEHICLE 104
+          </span>
+        </div>
+
+        {/* Compact Telemetry Chips (Breathes naturally below visual, no overlap) */}
+        <div className="hero-mobile-chips">
+          <div className="hero-mobile-chip">
+            <div className="chip-icon"><Gauge size={14} /></div>
+            <div>
+              <strong>{telemetry.speed} km/h</strong>
+              <small>MOVING</small>
+            </div>
+          </div>
+          <div className="hero-mobile-chip">
+            <div className="chip-icon"><RouteIcon size={14} /></div>
+            <div>
+              <strong>{telemetry.distance} km</strong>
+              <small>NH-16 ROUTE</small>
+            </div>
+          </div>
+          <div className="hero-mobile-chip">
+            <div className="chip-icon chip-status"><ShieldCheck size={14} /></div>
+            <div>
+              <strong>NORMAL</strong>
+              <small>SYSTEM HEALTH</small>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Active Route Vector */}
+        <div className="hero-mobile-route">
+          <div className="hero-mobile-route-meta">
+            <span>ACTIVE ROUTE</span>
+            <span>NH-16 &bull; ODISHA</span>
+          </div>
+          <div className="route-line" aria-hidden="true">
+            <span />
+            <i />
+            <i />
+            <i />
+          </div>
+          <div className="route-destinations">
+            <span>Bhubaneswar</span>
+            <span>Berhampur</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Floating Badges (Hidden on mobile via CSS) */}
       <div className="hero-coordinate" aria-label="Geographic coordinates">
         20&deg;27&apos; N &nbsp; 85&deg;53&apos; E{" "}
         <span>ODISHA, INDIA</span>

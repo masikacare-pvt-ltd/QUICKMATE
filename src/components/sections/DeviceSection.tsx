@@ -1,8 +1,62 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Cpu, Radio, Activity, Navigation } from "lucide-react";
+
+type HotspotKey = "gps" | "motion" | "cellular" | "intel";
+
+interface HotspotInfo {
+  key: HotspotKey;
+  label: string;
+  sublabel: string;
+  title: string;
+  description: string;
+  icon: typeof Navigation;
+}
+
+const hotspots: HotspotInfo[] = [
+  {
+    key: "gps",
+    label: "GPS",
+    sublabel: "POSITIONING",
+    title: "High-Precision GNSS Positioning",
+    description: "Continuous real-time geolocation with sub-second vector logging across multi-satellite constellations.",
+    icon: Navigation,
+  },
+  {
+    key: "motion",
+    label: "MOTION",
+    sublabel: "SENSING",
+    title: "Tri-Axial Motion Sensing",
+    description: "High-G accelerometer and gyro tracking harsh braking, abrupt lane changes, and vibration patterns.",
+    icon: Activity,
+  },
+  {
+    key: "cellular",
+    label: "CELLULAR",
+    sublabel: "CONNECTIVITY",
+    title: "Industrial 4G/LTE Connectivity",
+    description: "Ruggedized telemetry transceiver ensuring continuous uplink even across remote highway corridors.",
+    icon: Radio,
+  },
+  {
+    key: "intel",
+    label: "ONBOARD",
+    sublabel: "INTELLIGENCE",
+    title: "Edge Machine Intelligence",
+    description: "On-device processing detects route anomalies, extended idling, and stoppage events instantly.",
+    icon: Cpu,
+  },
+];
 
 export function DeviceSection() {
+  const [activeHotspot, setActiveHotspot] = useState<HotspotKey>("gps");
+
+  const currentHotspot = hotspots.find((h) => h.key === activeHotspot) ?? hotspots[0];
+  const CurrentIcon = currentHotspot.icon;
+
   return (
     <section className="device-section">
       <div className="device-copy">
@@ -27,27 +81,85 @@ export function DeviceSection() {
         <div className="device-orbit orbit-one" aria-hidden="true" />
         <div className="device-orbit orbit-two" aria-hidden="true" />
 
-        <Image
-          className="device-image"
-          src="/assets/quickmate-device.png"
-          alt="Compact industrial QUICKMATE telematics device"
-          width={1024}
-          height={1024}
-          loading="lazy"
-        />
+        <div className="device-image-wrapper">
+          <Image
+            className="device-image"
+            src="/assets/quickmate-device.png"
+            alt="Compact industrial QUICKMATE telematics device"
+            width={1024}
+            height={1024}
+            loading="lazy"
+          />
+        </div>
 
-        <span className="device-label device-gps">
+        {/* Desktop floating labels */}
+        <button
+          type="button"
+          className={`device-label device-gps ${activeHotspot === "gps" ? "active" : ""}`}
+          onClick={() => setActiveHotspot("gps")}
+          aria-label="GPS Positioning details"
+        >
           <i aria-hidden="true" /> GPS <b>POSITIONING</b>
-        </span>
-        <span className="device-label device-motion">
+        </button>
+        <button
+          type="button"
+          className={`device-label device-motion ${activeHotspot === "motion" ? "active" : ""}`}
+          onClick={() => setActiveHotspot("motion")}
+          aria-label="Motion Sensing details"
+        >
           <i aria-hidden="true" /> MOTION <b>SENSING</b>
-        </span>
-        <span className="device-label device-cellular">
+        </button>
+        <button
+          type="button"
+          className={`device-label device-cellular ${activeHotspot === "cellular" ? "active" : ""}`}
+          onClick={() => setActiveHotspot("cellular")}
+          aria-label="Cellular Connectivity details"
+        >
           <i aria-hidden="true" /> CELLULAR <b>CONNECTIVITY</b>
-        </span>
-        <span className="device-label device-intel">
+        </button>
+        <button
+          type="button"
+          className={`device-label device-intel ${activeHotspot === "intel" ? "active" : ""}`}
+          onClick={() => setActiveHotspot("intel")}
+          aria-label="Onboard Intelligence details"
+        >
           <i aria-hidden="true" /> ONBOARD <b>INTELLIGENCE</b>
-        </span>
+        </button>
+
+        {/* Mobile Hotspot Selector Bar (min 44x44px touch targets) */}
+        <div className="device-mobile-selector" role="tablist" aria-label="Device Modules">
+          {hotspots.map((h) => {
+            const Icon = h.icon;
+            const isSelected = activeHotspot === h.key;
+            return (
+              <button
+                key={h.key}
+                type="button"
+                role="tab"
+                aria-selected={isSelected}
+                className={`device-mobile-btn ${isSelected ? "selected" : ""}`}
+                onClick={() => setActiveHotspot(h.key)}
+              >
+                <Icon size={16} aria-hidden="true" />
+                <span>{h.label}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Mobile Dynamic Hardware Info Panel */}
+        <div className="device-mobile-info" role="tabpanel" aria-live="polite">
+          <div className="device-mobile-info-top">
+            <span className="info-title">
+              <CurrentIcon size={14} aria-hidden="true" />
+              {currentHotspot.title}
+            </span>
+            <span className="info-badge">
+              <i aria-hidden="true" /> ACTIVE
+            </span>
+          </div>
+          <p className="info-description">{currentHotspot.description}</p>
+        </div>
 
         <div className="device-footnote">
           <span>QUICKMATE CONNECTED VEHICLE DEVICE</span>

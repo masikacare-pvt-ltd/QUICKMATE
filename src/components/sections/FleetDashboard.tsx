@@ -6,6 +6,10 @@ import {
   ChevronRight,
   Gauge,
   Route as RouteIcon,
+  ShieldCheck,
+  AlertTriangle,
+  Clock,
+  Radio,
 } from "lucide-react";
 import { vehicles, type Vehicle } from "@/lib/data";
 
@@ -28,6 +32,7 @@ export function FleetDashboard() {
       </div>
 
       <div className="fleet-console">
+        {/* Console Topbar */}
         <div className="console-topbar">
           <div className="console-brand">
             <span className="console-brandmark" aria-hidden="true">
@@ -45,22 +50,23 @@ export function FleetDashboard() {
           </div>
         </div>
 
+        {/* Console Summary Bar */}
         <div className="console-summary">
-          <div>
-            <span>TOTAL VEHICLES</span>
+          <div className="summary-total">
+            <span>TOTAL FLEET</span>
             <strong>
               12 <small>ONLINE</small>
             </strong>
           </div>
-          <div>
+          <div className="summary-stat">
             <span>MOVING</span>
             <strong>08</strong>
           </div>
-          <div>
+          <div className="summary-stat">
             <span>STOPPED</span>
             <strong>02</strong>
           </div>
-          <div>
+          <div className="summary-stat">
             <span>IN TRANSIT</span>
             <strong>02</strong>
           </div>
@@ -71,6 +77,7 @@ export function FleetDashboard() {
           </div>
         </div>
 
+        {/* Console Body: Map + Vehicle List */}
         <div className="console-body">
           <div className="console-map" aria-label="Interactive Fleet Map">
             <div className="console-map-grid" aria-hidden="true" />
@@ -96,8 +103,9 @@ export function FleetDashboard() {
             <span className="console-map-label map-label-b">BERHAMPUR</span>
             <span className="console-map-label map-label-c">NH-16</span>
 
+            {/* Interactive Vehicle Markers on Map */}
             <button
-              className={`vehicle-marker marker-a ${activeVehicle.id === "104" ? "ring-1 ring-[var(--lime)]" : ""}`}
+              className={`vehicle-marker marker-a ${activeVehicle.id === "104" ? "selected-marker" : ""}`}
               onClick={() => setActiveVehicle(vehicles[0])}
               aria-label="Select vehicle 104"
             >
@@ -105,7 +113,7 @@ export function FleetDashboard() {
               <i aria-hidden="true" />
             </button>
             <button
-              className={`vehicle-marker marker-b ${activeVehicle.id === "108" ? "ring-1 ring-[var(--lime)]" : ""}`}
+              className={`vehicle-marker marker-b ${activeVehicle.id === "108" ? "selected-marker" : ""}`}
               onClick={() => setActiveVehicle(vehicles[1])}
               aria-label="Select vehicle 108"
             >
@@ -113,7 +121,7 @@ export function FleetDashboard() {
               <i aria-hidden="true" />
             </button>
             <button
-              className={`vehicle-marker marker-c ${activeVehicle.id === "112" ? "ring-1 ring-[var(--lime)]" : ""}`}
+              className={`vehicle-marker marker-c ${activeVehicle.id === "112" ? "selected-marker" : ""}`}
               onClick={() => setActiveVehicle(vehicles[2])}
               aria-label="Select vehicle 112"
             >
@@ -123,82 +131,101 @@ export function FleetDashboard() {
 
             <div className="map-legend">
               <i aria-hidden="true" /> MOVING{" "}
-              <i aria-hidden="true" /> STOPPED
+              <i aria-hidden="true" className="legend-stop" /> STOPPED
             </div>
           </div>
 
+          {/* Vehicles List & Selected Telemetry Panel */}
           <aside className="console-vehicles">
             <div className="vehicle-list-heading">
               <div>
                 <span>ACTIVE VEHICLES</span>
-                <small>Showing 3 of 12</small>
+                <small>Select to view live telemetry</small>
               </div>
-              <button aria-label="More vehicles" type="button">
-                <ChevronRight aria-hidden="true" />
-              </button>
+              <span className="vehicle-count-chip">3 of 12</span>
             </div>
 
-            {vehicles.map((vehicle) => (
-              <button
-                key={vehicle.id}
-                className={`vehicle-row ${activeVehicle.id === vehicle.id ? "selected" : ""}`}
-                onClick={() => setActiveVehicle(vehicle)}
-                aria-pressed={activeVehicle.id === vehicle.id}
-              >
-                <span
-                  className={`vehicle-status-dot ${vehicle.tone}`}
-                  aria-hidden="true"
-                />
-                <span className="vehicle-id">
-                  <strong>VEHICLE {vehicle.id}</strong>
-                  <small>{vehicle.place}</small>
-                </span>
-                <span className="vehicle-speed">
-                  <strong>
-                    {vehicle.status === "Stopped"
-                      ? "18 min"
-                      : `${vehicle.speed} km/h`}
-                  </strong>
-                  <small>{vehicle.status.toUpperCase()}</small>
-                </span>
-              </button>
-            ))}
+            {/* Vehicle Touch-Friendly List */}
+            <div className="vehicle-rows-container">
+              {vehicles.map((vehicle) => {
+                const isSelected = activeVehicle.id === vehicle.id;
+                return (
+                  <button
+                    key={vehicle.id}
+                    className={`vehicle-row ${isSelected ? "selected" : ""}`}
+                    onClick={() => setActiveVehicle(vehicle)}
+                    aria-pressed={isSelected}
+                  >
+                    <span
+                      className={`vehicle-status-dot ${vehicle.tone}`}
+                      aria-hidden="true"
+                    />
+                    <div className="vehicle-id">
+                      <strong>VEHICLE {vehicle.id}</strong>
+                      <small>{vehicle.place}</small>
+                    </div>
+                    <div className="vehicle-speed">
+                      <strong>
+                        {vehicle.status === "Stopped"
+                          ? "18 min"
+                          : `${vehicle.speed} km/h`}
+                      </strong>
+                      <small>{vehicle.status.toUpperCase()}</small>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
 
+            {/* Selected Vehicle Focus Telemetry Card */}
             <div className="vehicle-focus">
               <div className="vehicle-focus-heading">
-                <span>SELECTED VEHICLE</span>
-                <b>#{activeVehicle.id}</b>
+                <span>FOCUSED TELEMETRY</span>
+                <b>VEHICLE #{activeVehicle.id}</b>
               </div>
+
               <div className="focus-telemetry">
-                <span>
-                  <Gauge aria-hidden="true" />
-                  <strong>
-                    {activeVehicle.status === "Stopped"
-                      ? "0"
-                      : activeVehicle.speed}
-                    <small> km/h</small>
-                  </strong>
-                  <small>SPEED</small>
-                </span>
-                <span>
-                  <RouteIcon aria-hidden="true" />
-                  <strong>
-                    {activeVehicle.distance}
-                    <small> km</small>
-                  </strong>
-                  <small>DISTANCE</small>
-                </span>
+                <div className="telemetry-box">
+                  <Gauge size={16} aria-hidden="true" />
+                  <div>
+                    <strong>
+                      {activeVehicle.status === "Stopped" ? "0" : activeVehicle.speed}
+                      <small> km/h</small>
+                    </strong>
+                    <small>SPEED</small>
+                  </div>
+                </div>
+
+                <div className="telemetry-box">
+                  <RouteIcon size={16} aria-hidden="true" />
+                  <div>
+                    <strong>
+                      {activeVehicle.distance}
+                      <small> km</small>
+                    </strong>
+                    <small>DISTANCE</small>
+                  </div>
+                </div>
               </div>
-              <div className="vehicle-health">
-                <i aria-hidden="true" />{" "}
-                {activeVehicle.tone === "watch"
-                  ? "REVIEW STOPPAGE"
-                  : "STATUS: NORMAL"}
+
+              <div className={`vehicle-health ${activeVehicle.tone === "watch" ? "health-watch" : ""}`}>
+                {activeVehicle.tone === "watch" ? (
+                  <>
+                    <AlertTriangle size={13} aria-hidden="true" />
+                    <span>ANOMALY: UNEXPECTED STOPPAGE (18m)</span>
+                  </>
+                ) : (
+                  <>
+                    <ShieldCheck size={13} aria-hidden="true" />
+                    <span>SYSTEM HEALTH: OPTIMAL (ON ROUTE)</span>
+                  </>
+                )}
               </div>
             </div>
           </aside>
         </div>
 
+        {/* Console Footer */}
         <div className="console-footer">
           <span>
             <i aria-hidden="true" /> ROUTE: NH-16
