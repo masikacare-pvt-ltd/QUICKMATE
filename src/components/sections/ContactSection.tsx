@@ -16,9 +16,30 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.email) {
-      setFormSent(true);
-    }
+    setFormSent(true);
+
+    const subject = encodeURIComponent(
+      `QUICKMATE Inquiry - ${formData.name || "Fleet Consultation"}${formData.company ? ` (${formData.company})` : ""}`
+    );
+
+    const bodyLines = [
+      "Hello QUICKMATE Team,",
+      "",
+      `Name: ${formData.name || "N/A"}`,
+      `Company: ${formData.company || "N/A"}`,
+      `Email: ${formData.email || "N/A"}`,
+      `Phone: ${formData.phone || "N/A"}`,
+      `Fleet Size: ${formData.fleetSize || "N/A"}`,
+      "",
+      "Message:",
+      formData.message || "I would like to explore QUICKMATE fleet solutions.",
+      "",
+      "---",
+      "Sent from QUICKMATE website",
+    ];
+
+    const body = encodeURIComponent(bodyLines.join("\n"));
+    window.location.href = `mailto:hello@quickmate.in?subject=${subject}&body=${body}`;
   };
 
   const handleChange = (
